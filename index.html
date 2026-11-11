@@ -4,15 +4,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Little Surprise for Yana 💗</title>
+
+<title>A Little Question for Yana 💗</title>
 
 <style>
 :root {
-    --pink: #ffb6cb;
-    --light-pink: #fff0f5;
-    --dark-pink: #e879a0;
-    --purple: #9275aa;
-    --ink: #714d70;
+    --pink: #f6a9c3;
+    --light-pink: #fff1f6;
+    --dark-pink: #d96794;
+    --purple: #966e96;
+    --text: #714d70;
     --white: #fffafd;
 }
 
@@ -23,16 +24,16 @@
 body {
     margin: 0;
     min-height: 100vh;
-    padding: 20px;
+    padding: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: "Courier New", monospace;
-    color: var(--ink);
+    color: var(--text);
     background-color: #ffe5ef;
     background-image:
-        linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px);
     background-size: 25px 25px;
     overflow-x: hidden;
 }
@@ -42,24 +43,30 @@ body {
 }
 
 .window {
-    width: min(100%, 520px);
+    width: min(100%, 530px);
     background: var(--white);
-    border: 4px solid #966e96;
+    border: 4px solid var(--purple);
     border-radius: 12px;
-    box-shadow: 8px 8px 0 rgba(126, 76, 119, .18);
+    box-shadow: 8px 8px 0 rgba(126,76,119,.18);
     overflow: hidden;
     animation: appear .5s ease;
 }
 
 @keyframes appear {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .titlebar {
-    background: #f6a9c3;
+    background: var(--pink);
     padding: 12px 15px;
-    border-bottom: 3px solid #966e96;
+    border-bottom: 3px solid var(--purple);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -74,9 +81,8 @@ body {
 .window-buttons span {
     width: 12px;
     height: 12px;
-    border: 2px solid #966e96;
     background: #fff5fa;
-    display: block;
+    border: 2px solid var(--purple);
 }
 
 .content {
@@ -93,13 +99,23 @@ body {
 
 h1 {
     font-size: clamp(23px, 6vw, 31px);
-    color: #d96794;
-    margin: 12px 0;
+    color: var(--dark-pink);
+    margin: 13px 0;
+}
+
+h2 {
+    color: var(--dark-pink);
 }
 
 p {
-    line-height: 1.8;
     font-size: 14px;
+    line-height: 1.8;
+}
+
+.hint {
+    color: #a57c9b;
+    font-size: 11px;
+    margin-top: 12px;
 }
 
 .divider {
@@ -120,7 +136,7 @@ p {
     position: relative;
     margin: 20px auto;
     background: #ed91af;
-    border: 4px solid #966e96;
+    border: 4px solid var(--purple);
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 5px 5px 0 #e6c0d3;
@@ -151,7 +167,7 @@ p {
     width: 100%;
     height: 75%;
     background: #e982a7;
-    border: 4px solid #966e96;
+    border: 4px solid var(--purple);
     clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform-origin: top;
     transition: transform .6s ease;
@@ -171,10 +187,12 @@ p {
     font-size: 29px;
 }
 
-.open-button, .yes-button, .replay-button {
-    border: 3px solid #966e96;
+.open-button,
+.yes-button,
+.replay-button {
+    border: 3px solid var(--purple);
     border-radius: 8px;
-    background: #f5a6c0;
+    background: var(--pink);
     color: #684764;
     padding: 13px 20px;
     font-family: inherit;
@@ -184,22 +202,24 @@ p {
     transition: transform .2s, background .2s;
 }
 
-.open-button:hover, .yes-button:hover, .replay-button:hover {
+.open-button:hover,
+.yes-button:hover,
+.replay-button:hover {
     background: #ff8fb5;
     transform: translateY(-3px);
 }
 
-.open-button:active, .yes-button:active {
+.open-button:active,
+.yes-button:active {
     transform: translateY(2px);
-    box-shadow: none;
 }
 
-/* LETTER */
+/* LETTER AND CATS */
 
 .cat-scene {
     font-size: 43px;
-    margin: 13px 0;
-    letter-spacing: 8px;
+    margin: 15px 0;
+    letter-spacing: 7px;
     animation: bounce 2s infinite ease-in-out;
 }
 
@@ -213,56 +233,66 @@ p {
     background: #fff3f8;
     border: 2px dashed #e6a2bf;
     border-radius: 10px;
-    padding: 18px;
-    margin: 18px 0;
+    padding: 19px;
+    margin: 20px 0;
     line-height: 1.9;
     font-size: 13px;
 }
 
 .question {
     background: #fff0f6;
-    padding: 16px 10px;
+    padding: 18px 12px;
     border-radius: 10px;
     border: 2px solid #f0c2d5;
     margin-top: 22px;
 }
 
 .question h2 {
-    font-size: 18px;
-    color: #cf6693;
+    font-size: 19px;
 }
+
+/* BUTTON AREA */
 
 .actions {
     position: relative;
-    min-height: 145px;
+    min-height: 155px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .yes-button {
-    min-width: 170px;
+    min-width: 175px;
     font-size: 14px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1;
+}
+
+.yes-button:hover {
+    transform: translate(-50%, calc(-50% - 3px));
 }
 
 .no-button {
     position: absolute;
-    border: 3px solid #966e96;
+    left: 0;
+    top: 0;
+    border: 3px solid var(--purple);
     background: #e7d9ed;
     color: #765b83;
     padding: 12px 17px;
     border-radius: 8px;
     font-family: inherit;
     font-weight: bold;
-    cursor: pointer;
     white-space: nowrap;
+    cursor: pointer;
     box-shadow: 3px 3px 0 #cbb5d5;
     z-index: 3;
-    touch-action: none;
+    touch-action: manipulation;
     transition: left .12s ease, top .12s ease;
 }
 
@@ -270,13 +300,12 @@ p {
     background: #d9c3e5;
 }
 
-.hint {
+.hint-message {
     color: #a57c9b;
     font-size: 11px;
-    margin-top: 5px;
 }
 
-/* SUCCESS */
+/* SUCCESS SCREEN */
 
 .success-content {
     padding: 40px 22px;
@@ -292,9 +321,11 @@ p {
     50% { transform: scale(1.2); }
 }
 
+/* FLOATING HEARTS */
+
 .heart {
     position: fixed;
-    bottom: -30px;
+    bottom: -35px;
     pointer-events: none;
     z-index: 20;
     animation: floatUp 4s linear forwards;
@@ -311,6 +342,8 @@ p {
     }
 }
 
+/* MOBILE */
+
 @media (max-width: 390px) {
     body {
         padding: 10px;
@@ -321,12 +354,12 @@ p {
     }
 
     .letter {
-        padding: 13px;
+        padding: 14px;
         font-size: 12px;
     }
 
     .yes-button {
-        min-width: 145px;
+        min-width: 150px;
         padding: 12px 10px;
     }
 }
@@ -335,7 +368,6 @@ p {
     *, *::before, *::after {
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
     }
 }
 </style>
@@ -343,26 +375,33 @@ p {
 
 <body>
 
-<!-- FIRST SCREEN: ENVELOPE -->
+<!-- =================================
+     FIRST SCREEN: ENVELOPE
+================================== -->
 
 <section class="window" id="intro">
 
     <div class="titlebar">
         <span>♡ A LITTLE SURPRISE</span>
+
         <div class="window-buttons">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
 
     <div class="content">
 
-        <div class="small-label">✦ YOU HAVE A NEW MESSAGE ✦</div>
+        <div class="small-label">
+            ✦ YOU HAVE A NEW MESSAGE ✦
+        </div>
 
         <h1>Hey, Yana! 💗</h1>
 
         <p>
             Someone made a little something<br>
-            just for you.
+            especially for you.
         </p>
 
         <div class="envelope-area">
@@ -374,39 +413,52 @@ p {
 
         </div>
 
-        <p>There's a little letter waiting for you...</p>
+        <p>
+            There's a little letter waiting for you...
+        </p>
 
         <button class="open-button" id="openLetter">
             OPEN MY LETTER ♡
         </button>
 
-        <p class="hint">Made with a little bit of courage and lots of love.</p>
+        <p class="hint">
+            Made with courage and lots of love.
+        </p>
 
     </div>
 </section>
 
 
-<!-- SECOND SCREEN: LETTER -->
+<!-- =================================
+     SECOND SCREEN: PERSONAL LETTER
+================================== -->
 
 <section class="window" id="letter" hidden>
 
     <div class="titlebar">
         <span>♡ LOVE.EXE</span>
+
         <div class="window-buttons">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
 
     <div class="content">
 
-        <div class="small-label">✦ A LETTER FOR SOMEONE SPECIAL ✦</div>
+        <div class="small-label">
+            ✦ A LETTER FOR SOMEONE SPECIAL ✦
+        </div>
 
-        <div class="cat-scene">🐱 💗 🐱</div>
+        <div class="cat-scene">
+            🐱 💗 🐱
+        </div>
 
-        <h1>Hi, Yana Delos Santos!</h1>
+        <h1>Dear Yana Delos Santos,</h1>
 
         <p>
-            I have something I've been wanting to tell you.
+            There's something I've been wanting to tell you.
         </p>
 
         <div class="letter">
@@ -415,118 +467,185 @@ p {
 
             <br><br>
 
-            When we first met in RPW, I honestly didn't expect
-            that you would become someone this special to me.
+            I just want you to know that I truly cherish
+            every memory we've shared since the day we met
+            in RPW.
 
             <br><br>
 
-            It started with a simple meeting, then conversations,
-            little moments, and eventually, you became someone
-            I look forward to talking to.
+            Who would've thought that a simple encounter
+            would lead me to someone I would eventually
+            consider so special?
 
             <br><br>
 
-            I don't know exactly when it happened, but somewhere
-            along the way, I realized that my feelings for you
-            had become more than just a simple crush.
+            From our little conversations to the moments
+            we've shared, I appreciate all of them more
+            than words can explain.
 
             <br><br>
 
-            I think I'm falling in love with you, Yana.
+            I may not know what the future holds, but one
+            thing I'm certain of is that I'm grateful our
+            paths crossed.
 
             <br><br>
 
-            I made this little website because I wanted to tell
-            you in a way that's a little different and special.
+            I don't want to rush things or make you feel
+            like you have to feel the same way I do.
 
             <br><br>
 
-            I'm not asking you to have all the answers right now.
-            I just want the chance to know you more and see
-            where this could take us.
+            I just want to be honest about my intentions
+            and show you, through my words and actions,
+            that my feelings are sincere.
 
             <br><br>
 
-            <strong>From someone who is happy to have met you. ♡</strong>
+            I want to get to know you more, create more
+            memories with you, and hopefully make you feel
+            as special as you make me feel.
+
+            <br><br>
+
+            I'm not promising to be perfect, but I promise
+            to be genuine, patient, and sincere with you.
+
+            <br><br>
+
+            <strong>
+                From someone who is really happy
+                that he met you. ♡
+            </strong>
 
         </div>
 
+        <!-- THE QUESTION -->
+
         <div class="question">
 
-            <div class="cat-scene">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div>
+            <div class="cat-scene">
+                ૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა
+            </div>
 
-            <h2>So, Yana...</h2>
+            <h2>Yana, may I ask you something? 💗</h2>
 
             <p>
-                Would you give me a chance<br>
-                to make more beautiful memories with you?
+                Would you let me court you?
+
+                <br><br>
+
+                I'd love the chance to show you how much
+                you mean to me, get to know you better,
+                and take things one step at a time.
             </p>
+
+            <!-- YES AND NO BUTTONS -->
 
             <div class="actions" id="actions">
 
-                <button class="yes-button" id="yesButton">
-                    YES! 💗
+                <button
+                    class="yes-button"
+                    id="yesButton"
+                    type="button"
+                >
+                    YES, YOU MAY! 💗
                 </button>
 
-                <button class="no-button" id="noButton">
+                <button
+                    class="no-button"
+                    id="noButton"
+                    type="button"
+                    aria-label="No, playful moving button"
+                >
                     NO 🙈
                 </button>
 
             </div>
 
-            <p class="hint" id="hint">
-                Psst... try clicking NO! Hehe. 🤭
+            <p class="hint-message" id="hint">
+                Psst... try catching the NO button! 🤭
             </p>
 
         </div>
 
         <p class="hint">
-            Whatever you genuinely feel, I promise to respect it.
+            Whatever you genuinely feel, I will respect it. ♡
         </p>
 
     </div>
 </section>
 
 
-<!-- THIRD SCREEN: HAPPY ENDING -->
+<!-- =================================
+     THIRD SCREEN: YES / HAPPY ENDING
+================================== -->
 
 <section class="window" id="success" hidden>
 
     <div class="titlebar">
         <span>♡ HAPPY.EXE</span>
+
         <div class="window-buttons">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
 
     <div class="success-content content">
 
-        <div class="small-label">✦ MY HEART IS SO HAPPY ✦</div>
+        <div class="small-label">
+            ✦ MY HEART IS SO HAPPY ✦
+        </div>
 
-        <div class="big-heart">💗</div>
+        <div class="big-heart">
+            💗
+        </div>
 
-        <h1>YOU MADE ME SMILE!</h1>
+        <h1>YOU JUST MADE MY DAY!</h1>
 
-        <div class="cat-scene">🐱 💕 🐱</div>
+        <div class="cat-scene">
+            🐱 💕 🐱
+        </div>
 
         <p>
-            Thank you, Yana! 
+            Thank you for giving me this opportunity, Yana!
         </p>
 
         <p>
-            I don't know what the future holds for us,
-            but I'm excited to get to know you more
-            and create more wonderful memories together.
+            I promise to cherish every moment,
+            be sincere with my intentions, and
+            take things one step at a time.
         </p>
 
         <p>
-            No pressure, no rush.<br>
-            Just something genuine. ♡
+            I know that courting someone means more
+            than simply saying sweet words.
+
+            <br><br>
+
+            I hope I can show you through my actions
+            how much I genuinely appreciate you.
         </p>
 
-        <h2 style="color:#d96794;">You're special to me! 💗</h2>
+        <p>
+            Thank you for letting me have a chance
+            to make more memories with you.
+        </p>
 
-        <button class="replay-button" onclick="location.reload()">
+        <h2 style="color:#d96794;">
+            Here's to a beautiful beginning! ♡
+        </h2>
+
+        <div style="font-size:30px; margin:20px;">
+            💗 💕 💖
+        </div>
+
+        <button
+            class="replay-button"
+            onclick="location.reload()"
+        >
             READ AGAIN ♡
         </button>
 
@@ -536,9 +655,9 @@ p {
 
 <script>
 
-// =======================================
-// ENVELOPE OPENING
-// =======================================
+/* =====================================
+   ENVELOPE OPENING
+===================================== */
 
 const envelope = document.getElementById("envelope");
 const openLetter = document.getElementById("openLetter");
@@ -547,7 +666,13 @@ const intro = document.getElementById("intro");
 const letter = document.getElementById("letter");
 const success = document.getElementById("success");
 
+let letterOpened = false;
+
 function openTheLetter() {
+
+    if (letterOpened) return;
+
+    letterOpened = true;
 
     envelope.classList.add("opened");
 
@@ -555,9 +680,12 @@ function openTheLetter() {
     openLetter.textContent = "OPENING... 💗";
 
     setTimeout(() => {
+
         intro.hidden = true;
         letter.hidden = false;
-        positionNoButton();
+
+        requestAnimationFrame(positionNoButton);
+
     }, 650);
 }
 
@@ -565,9 +693,9 @@ envelope.addEventListener("click", openTheLetter);
 openLetter.addEventListener("click", openTheLetter);
 
 
-// =======================================
-// THE NO BUTTON THAT RUNS AWAY
-// =======================================
+/* =====================================
+   THE NO BUTTON RUNS AWAY
+===================================== */
 
 const noButton = document.getElementById("noButton");
 const yesButton = document.getElementById("yesButton");
@@ -579,98 +707,121 @@ let attempts = 0;
 const funnyMessages = [
     "Hehe, too slow! 🙈",
     "Oops! Almost got me! 💗",
-    "Are you really trying to click NO? 😭",
+    "Are you really trying to catch me? 😭",
     "Nope! I'm too fast! 🏃",
     "Hahaha, try again! 💕",
-    "The YES button is waiting for you! 🤭",
+    "The YES button is waiting! 🤭",
     "Mission impossible! 💗",
-    "You almost caught me! 🐱"
+    "You almost caught me! 🐱",
+    "Nice try! Hehehe! 💖"
 ];
 
 
-// Put NO beside YES when the letter first appears.
+/* Position NO when the letter first appears. */
+
 function positionNoButton() {
 
-    const yesRect = yesButton.getBoundingClientRect();
     const areaRect = actions.getBoundingClientRect();
+    const yesRect = yesButton.getBoundingClientRect();
 
     const noWidth = noButton.offsetWidth;
     const noHeight = noButton.offsetHeight;
 
-    let left = yesRect.right - areaRect.left + 12;
-    let top = yesRect.top - areaRect.top +
-              (yesRect.height - noHeight) / 2;
+    const yesLeft = yesRect.left - areaRect.left;
+    const yesRight = yesRect.right - areaRect.left;
 
-    // If there isn't enough room beside YES,
-    // put NO below it.
+    let left = yesRight + 12;
+    let top = (areaRect.height - noHeight) / 2;
+
+    // If NO does not fit on the right,
+    // place it below YES.
+
     if (left + noWidth > areaRect.width - 5) {
+
         left = (areaRect.width - noWidth) / 2;
-        top = yesRect.bottom - areaRect.top + 8;
+        top = areaRect.height - noHeight - 5;
+
     }
 
-    noButton.style.left = Math.max(5, left) + "px";
-    noButton.style.top = Math.max(5, top) + "px";
+    noButton.style.left =
+        Math.max(5, Math.min(left, areaRect.width - noWidth - 5)) + "px";
+
+    noButton.style.top =
+        Math.max(5, top) + "px";
 }
 
 
-// Make the NO button jump to a random position.
+/* Move NO to a new random location. */
+
 function moveNoButton() {
 
-    const maxLeft = Math.max(
-        5,
-        actions.clientWidth - noButton.offsetWidth - 5
-    );
+    const areaWidth = actions.clientWidth;
+    const areaHeight = actions.clientHeight;
 
-    const maxTop = Math.max(
-        5,
-        actions.clientHeight - noButton.offsetHeight - 5
-    );
+    const noWidth = noButton.offsetWidth;
+    const noHeight = noButton.offsetHeight;
 
     const yesRect = yesButton.getBoundingClientRect();
     const areaRect = actions.getBoundingClientRect();
 
-    let newLeft = 5;
-    let newTop = 5;
+    const yesLeft = yesRect.left - areaRect.left;
+    const yesRight = yesRect.right - areaRect.left;
+    const yesTop = yesRect.top - areaRect.top;
+    const yesBottom = yesRect.bottom - areaRect.top;
 
-    // Try several random positions so NO
-    // does not cover the YES button.
-    for (let i = 0; i < 40; i++) {
+    const maxLeft = Math.max(5, areaWidth - noWidth - 5);
+    const maxTop = Math.max(5, areaHeight - noHeight - 5);
+
+    let chosenPosition = null;
+
+    // Find a location that does not overlap YES.
+
+    for (let i = 0; i < 100; i++) {
 
         const candidateLeft =
-            5 + Math.random() * (maxLeft - 5);
+            5 + Math.random() * Math.max(0, maxLeft - 5);
 
         const candidateTop =
-            5 + Math.random() * (maxTop - 5);
+            5 + Math.random() * Math.max(0, maxTop - 5);
 
         const candidateRight =
-            candidateLeft + noButton.offsetWidth;
+            candidateLeft + noWidth;
 
         const candidateBottom =
-            candidateTop + noButton.offsetHeight;
-
-        const yesLeft = yesRect.left - areaRect.left;
-        const yesRight = yesRect.right - areaRect.left;
-        const yesTop = yesRect.top - areaRect.top;
-        const yesBottom = yesRect.bottom - areaRect.top;
+            candidateTop + noHeight;
 
         const overlapsYes = !(
-            candidateRight < yesLeft - 10 ||
-            candidateLeft > yesRight + 10 ||
-            candidateBottom < yesTop - 10 ||
-            candidateTop > yesBottom + 10
+            candidateRight < yesLeft - 12 ||
+            candidateLeft > yesRight + 12 ||
+            candidateBottom < yesTop - 12 ||
+            candidateTop > yesBottom + 12
         );
 
         if (!overlapsYes) {
-            newLeft = candidateLeft;
-            newTop = candidateTop;
+
+            chosenPosition = {
+                left: candidateLeft,
+                top: candidateTop
+            };
+
             break;
         }
     }
 
-    noButton.style.left = newLeft + "px";
-    noButton.style.top = newTop + "px";
+    // Fallback: place NO above the YES button.
 
-    // Show a different funny message.
+    if (!chosenPosition) {
+
+        chosenPosition = {
+            left: Math.max(5, (areaWidth - noWidth) / 2),
+            top: Math.max(5, yesTop - noHeight - 12)
+        };
+
+    }
+
+    noButton.style.left = chosenPosition.left + "px";
+    noButton.style.top = chosenPosition.top + "px";
+
     attempts++;
 
     hint.textContent =
@@ -678,7 +829,8 @@ function moveNoButton() {
 }
 
 
-// On desktop, run away as soon as the mouse approaches.
+/* Desktop: move when the mouse gets close. */
+
 noButton.addEventListener("pointerenter", function(event) {
 
     if (event.pointerType === "mouse") {
@@ -688,7 +840,8 @@ noButton.addEventListener("pointerenter", function(event) {
 });
 
 
-// On mobile or desktop, dodge when pressed.
+/* Mobile and desktop: move as soon as pressed. */
+
 noButton.addEventListener("pointerdown", function(event) {
 
     event.preventDefault();
@@ -697,16 +850,8 @@ noButton.addEventListener("pointerdown", function(event) {
 });
 
 
-// Extra support for touchscreen devices.
-noButton.addEventListener("touchstart", function(event) {
+/* Keyboard activation also cannot select NO. */
 
-    event.preventDefault();
-    moveNoButton();
-
-}, { passive: false });
-
-
-// Even keyboard activation cannot select NO.
 noButton.addEventListener("click", function(event) {
 
     event.preventDefault();
@@ -715,14 +860,8 @@ noButton.addEventListener("click", function(event) {
 });
 
 
-// If someone navigates to NO using the keyboard,
-// move it away when it receives focus.
-noButton.addEventListener("focus", function() {
-    moveNoButton();
-});
+/* Keep NO in the correct area after resizing. */
 
-
-// Reposition it if the screen changes size.
 window.addEventListener("resize", function() {
 
     if (!letter.hidden) {
@@ -732,31 +871,42 @@ window.addEventListener("resize", function() {
 });
 
 
-// =======================================
-// YES BUTTON: HAPPY ENDING
-// =======================================
+/* =====================================
+   YES BUTTON: HAPPY ENDING
+===================================== */
 
 yesButton.addEventListener("click", function() {
 
     letter.hidden = true;
     success.hidden = false;
 
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
     createHearts();
 
 });
 
 
-// =======================================
-// FLOATING HEART ANIMATION
-// =======================================
+/* =====================================
+   FLOATING HEART ANIMATION
+===================================== */
 
 function createHearts() {
 
     const heartSymbols = [
-        "💗", "💕", "💖", "💓", "💘", "💞", "♡"
+        "💗",
+        "💕",
+        "💖",
+        "💓",
+        "💘",
+        "💞",
+        "♡"
     ];
 
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 40; i++) {
 
         const heart = document.createElement("div");
 
@@ -767,7 +917,8 @@ function createHearts() {
                 Math.floor(Math.random() * heartSymbols.length)
             ];
 
-        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.left =
+            Math.random() * 100 + "vw";
 
         heart.style.fontSize =
             (16 + Math.random() * 25) + "px";
@@ -782,7 +933,7 @@ function createHearts() {
 
         setTimeout(() => {
             heart.remove();
-        }, 8500);
+        }, 9000);
 
     }
 
