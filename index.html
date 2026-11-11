@@ -1,403 +1,794 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff2ea">
-  <meta name="description" content="A little surprise for Yana Delos Santos.">
-  <title>A Little Surprise for Yana ♡</title>
-  <style>
-    :root {
-      --paper: #fff3eb;
-      --paper-deep: #fbe6df;
-      --pink: #f6a2ad;
-      --pink-deep: #e77e91;
-      --rose: #c85d73;
-      --ink: #6b3d4a;
-      --muted: #a87980;
-      --grid: rgba(225, 132, 151, .19);
-      --shadow: 0 18px 45px rgba(173, 105, 119, .18);
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Surprise for Yana 💗</title>
+
+<style>
+:root {
+    --pink: #ffb6cb;
+    --light-pink: #fff0f5;
+    --dark-pink: #e879a0;
+    --purple: #9275aa;
+    --ink: #714d70;
+    --white: #fffafd;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Courier New", monospace;
+    color: var(--ink);
+    background-color: #ffe5ef;
+    background-image:
+        linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px);
+    background-size: 25px 25px;
+    overflow-x: hidden;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.window {
+    width: min(100%, 520px);
+    background: var(--white);
+    border: 4px solid #966e96;
+    border-radius: 12px;
+    box-shadow: 8px 8px 0 rgba(126, 76, 119, .18);
+    overflow: hidden;
+    animation: appear .5s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.titlebar {
+    background: #f6a9c3;
+    padding: 12px 15px;
+    border-bottom: 3px solid #966e96;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.window-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.window-buttons span {
+    width: 12px;
+    height: 12px;
+    border: 2px solid #966e96;
+    background: #fff5fa;
+    display: block;
+}
+
+.content {
+    padding: 28px 22px;
+    text-align: center;
+}
+
+.small-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #ae76a1;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: clamp(23px, 6vw, 31px);
+    color: #d96794;
+    margin: 12px 0;
+}
+
+p {
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.divider {
+    border: 0;
+    border-top: 2px dashed #e9b2c9;
+    margin: 22px 0;
+}
+
+/* ENVELOPE */
+
+.envelope-area {
+    padding: 25px 0;
+}
+
+.envelope {
+    width: 210px;
+    height: 140px;
+    position: relative;
+    margin: 20px auto;
+    background: #ed91af;
+    border: 4px solid #966e96;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 #e6c0d3;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #f8b5ca;
+    clip-path: polygon(0 0, 50% 65%, 100% 0);
+    z-index: 3;
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #f4a0bc;
+    clip-path: polygon(0 100%, 50% 45%, 100% 100%);
+    z-index: 2;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 75%;
+    background: #e982a7;
+    border: 4px solid #966e96;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: transform .6s ease;
+    z-index: 4;
+}
+
+.envelope.opened .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.stamp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    font-size: 29px;
+}
+
+.open-button, .yes-button, .replay-button {
+    border: 3px solid #966e96;
+    border-radius: 8px;
+    background: #f5a6c0;
+    color: #684764;
+    padding: 13px 20px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #d49bb9;
+    transition: transform .2s, background .2s;
+}
+
+.open-button:hover, .yes-button:hover, .replay-button:hover {
+    background: #ff8fb5;
+    transform: translateY(-3px);
+}
+
+.open-button:active, .yes-button:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+/* LETTER */
+
+.cat-scene {
+    font-size: 43px;
+    margin: 13px 0;
+    letter-spacing: 8px;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.letter {
+    text-align: left;
+    background: #fff3f8;
+    border: 2px dashed #e6a2bf;
+    border-radius: 10px;
+    padding: 18px;
+    margin: 18px 0;
+    line-height: 1.9;
+    font-size: 13px;
+}
+
+.question {
+    background: #fff0f6;
+    padding: 16px 10px;
+    border-radius: 10px;
+    border: 2px solid #f0c2d5;
+    margin-top: 22px;
+}
+
+.question h2 {
+    font-size: 18px;
+    color: #cf6693;
+}
+
+.actions {
+    position: relative;
+    min-height: 145px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.yes-button {
+    min-width: 170px;
+    font-size: 14px;
+    z-index: 1;
+}
+
+.no-button {
+    position: absolute;
+    border: 3px solid #966e96;
+    background: #e7d9ed;
+    color: #765b83;
+    padding: 12px 17px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 3px 3px 0 #cbb5d5;
+    z-index: 3;
+    touch-action: none;
+    transition: left .12s ease, top .12s ease;
+}
+
+.no-button:hover {
+    background: #d9c3e5;
+}
+
+.hint {
+    color: #a57c9b;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+/* SUCCESS */
+
+.success-content {
+    padding: 40px 22px;
+}
+
+.big-heart {
+    font-size: 76px;
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    pointer-events: none;
+    z-index: 20;
+    animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
     }
-    * { box-sizing: border-box; }
-    html { min-height: 100%; }
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 390px) {
     body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      overflow-x: hidden;
-      padding: 28px 16px;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 15% 22%, rgba(255,255,255,.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 78% 68%, rgba(231,126,145,.22) 0 1px, transparent 2px),
-        radial-gradient(circle at 35% 84%, rgba(255,255,255,.9) 0 1.5px, transparent 2.5px),
-        linear-gradient(145deg, #fff8f1, var(--paper) 52%, #fbe6e3);
-      background-size: 83px 91px, 109px 117px, 127px 133px, auto;
-      font-family: ui-rounded, "Trebuchet MS", "Segoe UI", sans-serif;
+        padding: 10px;
     }
-    button { font: inherit; }
-    .page {
-      width: min(100%, 710px);
-      min-height: min(650px, calc(100vh - 56px));
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      padding: 12px 0 28px;
-      isolation: isolate;
+
+    .content {
+        padding: 23px 14px;
     }
-    .page-title {
-      margin: 0 0 25px;
-      font-size: clamp(21px, 5vw, 30px);
-      font-weight: 900;
-      letter-spacing: -.8px;
-      color: #b7d957;
-      text-shadow: 1px 2px 0 #fff;
+
+    .letter {
+        padding: 13px;
+        font-size: 12px;
     }
-    .page-title span { color: #564d54; }
-    .tiny-subtitle {
-      margin: -17px 0 26px;
-      color: #b17d83;
-      font-size: 11px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
+
+    .yes-button {
+        min-width: 145px;
+        padding: 12px 10px;
     }
-    .stage {
-      width: min(100%, 510px);
-      min-height: 410px;
-      display: grid;
-      place-items: center;
-      position: relative;
-      padding: 25px 14px;
-      border: 1px solid rgba(255,255,255,.85);
-      border-radius: 10px;
-      background: rgba(255, 250, 245, .68);
-      box-shadow: 0 16px 50px rgba(188, 126, 133, .09), inset 0 0 0 1px rgba(237, 177, 180, .08);
-      overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
     }
-    .stage::before, .stage::after {
-      content: "";
-      position: absolute;
-      width: 7px; height: 7px;
-      background: #f2a0aa;
-      opacity: .55;
-      transform: rotate(45deg);
-      border-radius: 1px;
-    }
-    .stage::before { top: 52px; left: 12%; }
-    .stage::after { bottom: 65px; right: 12%; width: 5px; height: 5px; }
-    .envelope-scene {
-      text-align: center;
-      transition: opacity .35s ease, transform .45s ease;
-      z-index: 2;
-    }
-    .envelope-scene.is-opening { opacity: 0; transform: translateY(-22px) scale(.9); pointer-events: none; }
-    .envelope-button {
-      width: 150px;
-      height: 112px;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      display: block;
-      position: relative;
-      margin: 0 auto 15px;
-      filter: drop-shadow(0 8px 7px rgba(177, 103, 120, .15));
-      transition: transform .2s ease;
-    }
-    .envelope-button:hover { transform: translateY(-5px) rotate(-1deg); }
-    .envelope-button:focus-visible, .choice:focus-visible, .restart:focus-visible {
-      outline: 3px solid #b5d65e;
-      outline-offset: 5px;
-    }
-    .env-body {
-      position: absolute; left: 13px; right: 13px; bottom: 8px; height: 79px;
-      background: #ffd9d9;
-      border: 2px solid #db8997;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .env-fold-left, .env-fold-right {
-      position: absolute; bottom: 8px; width: 0; height: 0; z-index: 2;
-      border-top: 42px solid transparent;
-    }
-    .env-fold-left { left: 13px; border-left: 61px solid #f4b7bd; }
-    .env-fold-right { right: 13px; border-right: 61px solid #f4c1c4; }
-    .env-flap {
-      position: absolute; top: 7px; left: 13px; width: 0; height: 0; z-index: 3;
-      border-left: 62px solid transparent;
-      border-right: 62px solid transparent;
-      border-top: 48px solid #f6aab4;
-      transform-origin: top center;
-      transition: transform .5s ease;
-    }
-    .env-heart {
-      position: absolute; z-index: 4; left: 50%; top: 40px; transform: translateX(-50%);
-      color: #d94e6d; font-size: 18px; text-shadow: 0 1px #fff;
-    }
-    .envelope-button.opened .env-flap { transform: rotateX(180deg); }
-    .envelope-caption { margin: 0; color: #a86c79; font-size: 12px; font-weight: 700; }
-    .tap-hint { margin: 18px 0 0; color: #b58d90; font-size: 11px; }
-    .letter-window {
-      width: min(100%, 350px);
-      opacity: 0;
-      transform: translateY(20px) scale(.94);
-      position: absolute;
-      pointer-events: none;
-      transition: opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1);
-      z-index: 3;
-    }
-    .letter-window.visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
-    .window-bar {
-      min-height: 29px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 9px;
-      color: #854a58;
-      background: #f5b0b8;
-      border: 1px solid #dc8796;
-      border-bottom: 0;
-      border-radius: 7px 7px 0 0;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .5px;
-      box-shadow: 0 5px 14px rgba(178, 103, 118, .12);
-    }
-    .window-dots { display: flex; gap: 4px; }
-    .window-dots i { width: 6px; height: 6px; display: block; border-radius: 50%; background: #ffe9e5; border: 1px solid #cd7e8b; }
-    .window-content {
-      position: relative;
-      padding: 17px 17px 15px;
-      text-align: center;
-      border: 1px solid #dc8796;
-      border-radius: 0 0 7px 7px;
-      background-color: #fff0ec;
-      background-image:
-        linear-gradient(var(--grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-      background-size: 9px 9px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .hearts-line { margin: 0 0 8px; color: #d97889; font-size: 11px; letter-spacing: 4px; }
-    .message {
-      max-width: 275px;
-      min-height: 82px;
-      margin: 0 auto 8px;
-      color: #75434e;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-    .message strong { color: #c65b73; font-weight: 700; }
-    .pixel-pair {
-      width: 142px;
-      height: 104px;
-      display: block;
-      margin: 2px auto 9px;
-      image-rendering: pixelated;
-      filter: drop-shadow(0 4px 0 rgba(186, 107, 127, .12));
-    }
-    .choices { min-height: 35px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .choice {
-      border: 1px solid #cf7588;
-      border-radius: 3px;
-      padding: 8px 15px;
-      min-width: 76px;
-      cursor: pointer;
-      color: #9a4d60;
-      background: #fffaf7;
-      box-shadow: 0 3px 0 #e9bdc0;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: .7px;
-      transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
-    }
-    .choice:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #e9bdc0; }
-    .choice.primary { background: #f18d9f; color: white; border-color: #d96f83; box-shadow: 0 3px 0 #c9667a; }
-    .choice.primary:hover { background: #e97d91; box-shadow: 0 5px 0 #c9667a; }
-    .no-pressure { margin: 12px 0 0; color: #ad8187; font-size: 10px; }
-    .result { display: none; min-height: 230px; padding-top: 7px; }
-    .result.show { display: block; animation: popIn .45s both; }
-    .result h2 { margin: 0 0 9px; color: #c75f78; font-size: 20px; }
-    .result p { max-width: 260px; margin: 0 auto 13px; color: #75434e; font-family: Georgia, serif; font-size: 14px; line-height: 1.5; }
-    .result .pixel-pair { margin-top: 1px; }
-    .restart { border: 0; background: transparent; color: #a75f70; text-decoration: underline; font-size: 11px; cursor: pointer; padding: 6px; }
-    .footer-note { margin: 17px 0 0; text-align: center; color: #b48b8d; font-size: 10px; letter-spacing: .3px; }
-    .floating-heart {
-      position: fixed;
-      z-index: 5;
-      pointer-events: none;
-      color: #ef91a0;
-      font-size: 17px;
-      animation: floatUp 1.8s ease-out forwards;
-      text-shadow: 0 1px 0 white;
-    }
-    .sparkle { position: absolute; color: #e59aa7; opacity: .65; animation: twinkle 2.2s ease-in-out infinite; }
-    .sparkle.one { top: 13%; left: 13%; font-size: 15px; }
-    .sparkle.two { top: 22%; right: 13%; font-size: 12px; animation-delay: .8s; }
-    .sparkle.three { bottom: 17%; left: 16%; font-size: 11px; animation-delay: 1.2s; }
-    @keyframes floatUp { from { opacity: 0; transform: translateY(12px) scale(.6) rotate(-10deg); } 15% { opacity: 1; } to { opacity: 0; transform: translateY(-130px) scale(1.2) rotate(18deg); } }
-    @keyframes twinkle { 0%,100% { opacity: .35; transform: scale(.8) rotate(0); } 50% { opacity: .9; transform: scale(1.2) rotate(20deg); } }
-    @keyframes popIn { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: scale(1); } }
-    @media (max-width: 430px) {
-      body { padding: 14px 10px; }
-      .page { min-height: calc(100vh - 28px); padding: 7px 0 18px; }
-      .stage { min-height: 420px; padding: 18px 9px; }
-      .letter-window { width: min(100% - 8px, 330px); }
-      .window-content { padding: 14px 10px 13px; }
-      .message { font-size: 13px; min-height: 75px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
-    }
-  </style>
+}
+</style>
 </head>
+
 <body>
-  <main class="page">
-    <h1 class="page-title">Proposal Letter <span>CSS</span></h1>
-    <p class="tiny-subtitle">a little something for someone special</p>
-    <span class="sparkle one" aria-hidden="true">✦</span>
-    <span class="sparkle two" aria-hidden="true">♡</span>
-    <span class="sparkle three" aria-hidden="true">✧</span>
 
-    <section class="stage" aria-label="A surprise letter for Yana">
-      <div class="envelope-scene" id="envelopeScene">
-        <button class="envelope-button" id="openEnvelope" type="button" aria-label="Open your surprise letter">
-          <span class="env-body"></span>
-          <span class="env-fold-left"></span>
-          <span class="env-fold-right"></span>
-          <span class="env-flap"></span>
-          <span class="env-heart">♥</span>
-        </button>
-        <p class="envelope-caption">♥ A Little Surprise ♥</p>
-        <p class="tap-hint">tap the envelope to open your letter ♡</p>
-      </div>
+<!-- FIRST SCREEN: ENVELOPE -->
 
-      <section class="letter-window" id="letterWindow" aria-live="polite" aria-label="Love letter">
-        <div class="window-bar">
-          <span>♡ LOVE.EXE</span>
-          <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+<section class="window" id="intro">
+
+    <div class="titlebar">
+        <span>♡ A LITTLE SURPRISE</span>
+        <div class="window-buttons">
+            <span></span><span></span><span></span>
         </div>
-        <div class="window-content">
-          <div id="questionView">
-            <p class="hearts-line" aria-hidden="true">♥ ♥ ♥ ♥ ♥</p>
-            <p class="message">
-              Hi, <strong>Yana</strong>! ♡<br>
-              I didn't expect that meeting you in RPW would lead to someone I look forward to talking to. Somehow, you became really special to me.<br>
-              <strong>Would you let me take you on a little date?</strong>
-            </p>
-            <!-- Original inline pixel-art illustration; no external image or library needed. -->
-            <svg class="pixel-pair" viewBox="0 0 142 104" role="img" aria-label="Two little pixel cats sharing a heart" shape-rendering="crispEdges">
-              <!-- left cat -->
-              <g fill="#28262d">
-                <rect x="20" y="25" width="13" height="13"/><rect x="27" y="15" width="8" height="13"/><rect x="18" y="15" width="8" height="13"/>
-                <rect x="16" y="30" width="37" height="32"/><rect x="22" y="59" width="10" height="13"/><rect x="39" y="59" width="10" height="13"/>
-                <rect x="10" y="42" width="9" height="17"/><rect x="49" y="40" width="9" height="18"/>
-              </g>
-              <g fill="#fff4ed"><rect x="23" y="34" width="6" height="7"/><rect x="40" y="34" width="6" height="7"/><rect x="30" y="48" width="10" height="4"/></g>
-              <rect x="31" y="45" width="5" height="4" fill="#ee8798"/>
-              <!-- right cat -->
-              <g fill="#4a3039">
-                <rect x="89" y="25" width="13" height="13"/><rect x="87" y="15" width="8" height="13"/><rect x="101" y="15" width="8" height="13"/>
-                <rect x="81" y="30" width="37" height="32"/><rect x="85" y="59" width="10" height="13"/><rect x="103" y="59" width="10" height="13"/>
-                <rect x="76" y="40" width="9" height="18"/><rect x="115" y="42" width="9" height="17"/>
-              </g>
-              <g fill="#fff4ed"><rect x="88" y="34" width="6" height="7"/><rect x="105" y="34" width="6" height="7"/><rect x="96" y="48" width="10" height="4"/></g>
-              <rect x="97" y="45" width="5" height="4" fill="#ee8798"/>
-              <!-- shared pixel heart -->
-              <g fill="#e95378"><rect x="59" y="20" width="8" height="8"/><rect x="75" y="20" width="8" height="8"/><rect x="55" y="27" width="32" height="8"/><rect x="59" y="35" width="24" height="8"/><rect x="64" y="43" width="14" height="8"/><rect x="68" y="51" width="6" height="6"/></g>
-              <g fill="#f6a4af"><rect x="63" y="23" width="4" height="4"/><rect x="78" y="23" width="3" height="4"/></g>
-              <rect x="7" y="81" width="128" height="2" fill="#e8a5ae" opacity=".7"/>
-              <g fill="#e9a1ad"><rect x="13" y="88" width="4" height="4"/><rect x="124" y="88" width="4" height="4"/></g>
-            </svg>
-            <div class="choices">
-              <button class="choice primary" id="yesButton" type="button">YES ♡</button>
-              <button class="choice" id="laterButton" type="button">MAYBE LATER</button>
+    </div>
+
+    <div class="content">
+
+        <div class="small-label">✦ YOU HAVE A NEW MESSAGE ✦</div>
+
+        <h1>Hey, Yana! 💗</h1>
+
+        <p>
+            Someone made a little something<br>
+            just for you.
+        </p>
+
+        <div class="envelope-area">
+
+            <div class="envelope" id="envelope">
+                <div class="envelope-flap"></div>
+                <div class="stamp">💌</div>
             </div>
-            <p class="no-pressure">No pressure, okay? I just wanted you to know. ♡</p>
-          </div>
-          <div class="result" id="yesResult">
-            <p class="hearts-line" aria-hidden="true">♥ ♥ ♥ ♥ ♥</p>
-            <h2>YAYYY, YANA! ♡</h2>
-            <p>That made me smile so much. I can't wait to get to know you even more. Let's make a sweet little memory together!</p>
-            <svg class="pixel-pair" viewBox="0 0 142 104" role="img" aria-label="Two pixel cats celebrating with hearts" shape-rendering="crispEdges">
-              <g fill="#28262d"><rect x="20" y="35" width="13" height="13"/><rect x="18" y="25" width="8" height="13"/><rect x="32" y="25" width="8" height="13"/><rect x="16" y="40" width="37" height="32"/><rect x="22" y="69" width="10" height="10"/><rect x="39" y="69" width="10" height="10"/></g>
-              <g fill="#fff4ed"><rect x="23" y="44" width="6" height="7"/><rect x="40" y="44" width="6" height="7"/></g>
-              <g fill="#4a3039"><rect x="89" y="35" width="13" height="13"/><rect x="87" y="25" width="8" height="13"/><rect x="101" y="25" width="8" height="13"/><rect x="81" y="40" width="37" height="32"/><rect x="85" y="69" width="10" height="10"/><rect x="103" y="69" width="10" height="10"/></g>
-              <g fill="#fff4ed"><rect x="88" y="44" width="6" height="7"/><rect x="105" y="44" width="6" height="7"/></g>
-              <g fill="#e95378"><rect x="60" y="11" width="8" height="8"/><rect x="76" y="11" width="8" height="8"/><rect x="56" y="19" width="32" height="8"/><rect x="60" y="27" width="24" height="8"/><rect x="65" y="35" width="14" height="8"/><rect x="69" y="43" width="6" height="6"/></g>
-              <g fill="#f29dac"><rect x="15" y="12" width="5" height="5"/><rect x="119" y="16" width="5" height="5"/><rect x="8" y="67" width="4" height="4"/><rect x="130" y="63" width="4" height="4"/></g>
-            </svg>
-            <button class="restart" id="restartYes" type="button">♡ read the letter again</button>
-          </div>
-          <div class="result" id="laterResult">
-            <p class="hearts-line" aria-hidden="true">♡ ♡ ♡</p>
-            <h2>That's okay, Yana. ♡</h2>
-            <p>Thank you for reading my little letter. Take all the time you need. I respect how you feel, and I'm still glad our paths crossed.</p>
-            <button class="restart" id="restartLater" type="button">♡ read the letter again</button>
-          </div>
+
         </div>
-      </section>
-    </section>
-    <p class="footer-note">made with a little courage & lots of care · just for Yana ♡</p>
-  </main>
 
-  <script>
-    const openEnvelope = document.getElementById('openEnvelope');
-    const envelopeScene = document.getElementById('envelopeScene');
-    const letterWindow = document.getElementById('letterWindow');
-    const questionView = document.getElementById('questionView');
-    const yesResult = document.getElementById('yesResult');
-    const laterResult = document.getElementById('laterResult');
+        <p>There's a little letter waiting for you...</p>
 
-    openEnvelope.addEventListener('click', () => {
-      openEnvelope.classList.add('opened');
-      envelopeScene.classList.add('is-opening');
-      window.setTimeout(() => {
-        envelopeScene.hidden = true;
-        letterWindow.classList.add('visible');
-        document.getElementById('yesButton').focus({ preventScroll: true });
-      }, 350);
-    });
+        <button class="open-button" id="openLetter">
+            OPEN MY LETTER ♡
+        </button>
 
-    function showResult(kind) {
-      questionView.hidden = true;
-      yesResult.classList.toggle('show', kind === 'yes');
-      laterResult.classList.toggle('show', kind === 'later');
-      if (kind === 'yes') makeHearts(24);
-      const restart = kind === 'yes' ? document.getElementById('restartYes') : document.getElementById('restartLater');
-      restart.focus({ preventScroll: true });
+        <p class="hint">Made with a little bit of courage and lots of love.</p>
+
+    </div>
+</section>
+
+
+<!-- SECOND SCREEN: LETTER -->
+
+<section class="window" id="letter" hidden>
+
+    <div class="titlebar">
+        <span>♡ LOVE.EXE</span>
+        <div class="window-buttons">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="small-label">✦ A LETTER FOR SOMEONE SPECIAL ✦</div>
+
+        <div class="cat-scene">🐱 💗 🐱</div>
+
+        <h1>Hi, Yana Delos Santos!</h1>
+
+        <p>
+            I have something I've been wanting to tell you.
+        </p>
+
+        <div class="letter">
+
+            <strong>Dear Yana, ♡</strong>
+
+            <br><br>
+
+            When we first met in RPW, I honestly didn't expect
+            that you would become someone this special to me.
+
+            <br><br>
+
+            It started with a simple meeting, then conversations,
+            little moments, and eventually, you became someone
+            I look forward to talking to.
+
+            <br><br>
+
+            I don't know exactly when it happened, but somewhere
+            along the way, I realized that my feelings for you
+            had become more than just a simple crush.
+
+            <br><br>
+
+            I think I'm falling in love with you, Yana.
+
+            <br><br>
+
+            I made this little website because I wanted to tell
+            you in a way that's a little different and special.
+
+            <br><br>
+
+            I'm not asking you to have all the answers right now.
+            I just want the chance to know you more and see
+            where this could take us.
+
+            <br><br>
+
+            <strong>From someone who is happy to have met you. ♡</strong>
+
+        </div>
+
+        <div class="question">
+
+            <div class="cat-scene">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div>
+
+            <h2>So, Yana...</h2>
+
+            <p>
+                Would you give me a chance<br>
+                to make more beautiful memories with you?
+            </p>
+
+            <div class="actions" id="actions">
+
+                <button class="yes-button" id="yesButton">
+                    YES! 💗
+                </button>
+
+                <button class="no-button" id="noButton">
+                    NO 🙈
+                </button>
+
+            </div>
+
+            <p class="hint" id="hint">
+                Psst... try clicking NO! Hehe. 🤭
+            </p>
+
+        </div>
+
+        <p class="hint">
+            Whatever you genuinely feel, I promise to respect it.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- THIRD SCREEN: HAPPY ENDING -->
+
+<section class="window" id="success" hidden>
+
+    <div class="titlebar">
+        <span>♡ HAPPY.EXE</span>
+        <div class="window-buttons">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="success-content content">
+
+        <div class="small-label">✦ MY HEART IS SO HAPPY ✦</div>
+
+        <div class="big-heart">💗</div>
+
+        <h1>YOU MADE ME SMILE!</h1>
+
+        <div class="cat-scene">🐱 💕 🐱</div>
+
+        <p>
+            Thank you, Yana! 
+        </p>
+
+        <p>
+            I don't know what the future holds for us,
+            but I'm excited to get to know you more
+            and create more wonderful memories together.
+        </p>
+
+        <p>
+            No pressure, no rush.<br>
+            Just something genuine. ♡
+        </p>
+
+        <h2 style="color:#d96794;">You're special to me! 💗</h2>
+
+        <button class="replay-button" onclick="location.reload()">
+            READ AGAIN ♡
+        </button>
+
+    </div>
+</section>
+
+
+<script>
+
+// =======================================
+// ENVELOPE OPENING
+// =======================================
+
+const envelope = document.getElementById("envelope");
+const openLetter = document.getElementById("openLetter");
+
+const intro = document.getElementById("intro");
+const letter = document.getElementById("letter");
+const success = document.getElementById("success");
+
+function openTheLetter() {
+
+    envelope.classList.add("opened");
+
+    openLetter.disabled = true;
+    openLetter.textContent = "OPENING... 💗";
+
+    setTimeout(() => {
+        intro.hidden = true;
+        letter.hidden = false;
+        positionNoButton();
+    }, 650);
+}
+
+envelope.addEventListener("click", openTheLetter);
+openLetter.addEventListener("click", openTheLetter);
+
+
+// =======================================
+// THE NO BUTTON THAT RUNS AWAY
+// =======================================
+
+const noButton = document.getElementById("noButton");
+const yesButton = document.getElementById("yesButton");
+const actions = document.getElementById("actions");
+const hint = document.getElementById("hint");
+
+let attempts = 0;
+
+const funnyMessages = [
+    "Hehe, too slow! 🙈",
+    "Oops! Almost got me! 💗",
+    "Are you really trying to click NO? 😭",
+    "Nope! I'm too fast! 🏃",
+    "Hahaha, try again! 💕",
+    "The YES button is waiting for you! 🤭",
+    "Mission impossible! 💗",
+    "You almost caught me! 🐱"
+];
+
+
+// Put NO beside YES when the letter first appears.
+function positionNoButton() {
+
+    const yesRect = yesButton.getBoundingClientRect();
+    const areaRect = actions.getBoundingClientRect();
+
+    const noWidth = noButton.offsetWidth;
+    const noHeight = noButton.offsetHeight;
+
+    let left = yesRect.right - areaRect.left + 12;
+    let top = yesRect.top - areaRect.top +
+              (yesRect.height - noHeight) / 2;
+
+    // If there isn't enough room beside YES,
+    // put NO below it.
+    if (left + noWidth > areaRect.width - 5) {
+        left = (areaRect.width - noWidth) / 2;
+        top = yesRect.bottom - areaRect.top + 8;
     }
 
-    function resetLetter() {
-      yesResult.classList.remove('show');
-      laterResult.classList.remove('show');
-      questionView.hidden = false;
-      document.getElementById('yesButton').focus({ preventScroll: true });
+    noButton.style.left = Math.max(5, left) + "px";
+    noButton.style.top = Math.max(5, top) + "px";
+}
+
+
+// Make the NO button jump to a random position.
+function moveNoButton() {
+
+    const maxLeft = Math.max(
+        5,
+        actions.clientWidth - noButton.offsetWidth - 5
+    );
+
+    const maxTop = Math.max(
+        5,
+        actions.clientHeight - noButton.offsetHeight - 5
+    );
+
+    const yesRect = yesButton.getBoundingClientRect();
+    const areaRect = actions.getBoundingClientRect();
+
+    let newLeft = 5;
+    let newTop = 5;
+
+    // Try several random positions so NO
+    // does not cover the YES button.
+    for (let i = 0; i < 40; i++) {
+
+        const candidateLeft =
+            5 + Math.random() * (maxLeft - 5);
+
+        const candidateTop =
+            5 + Math.random() * (maxTop - 5);
+
+        const candidateRight =
+            candidateLeft + noButton.offsetWidth;
+
+        const candidateBottom =
+            candidateTop + noButton.offsetHeight;
+
+        const yesLeft = yesRect.left - areaRect.left;
+        const yesRight = yesRect.right - areaRect.left;
+        const yesTop = yesRect.top - areaRect.top;
+        const yesBottom = yesRect.bottom - areaRect.top;
+
+        const overlapsYes = !(
+            candidateRight < yesLeft - 10 ||
+            candidateLeft > yesRight + 10 ||
+            candidateBottom < yesTop - 10 ||
+            candidateTop > yesBottom + 10
+        );
+
+        if (!overlapsYes) {
+            newLeft = candidateLeft;
+            newTop = candidateTop;
+            break;
+        }
     }
 
-    document.getElementById('yesButton').addEventListener('click', () => showResult('yes'));
-    document.getElementById('laterButton').addEventListener('click', () => showResult('later'));
-    document.getElementById('restartYes').addEventListener('click', resetLetter);
-    document.getElementById('restartLater').addEventListener('click', resetLetter);
+    noButton.style.left = newLeft + "px";
+    noButton.style.top = newTop + "px";
 
-    function makeHearts(count) {
-      const symbols = ['♥', '♡', '✦', '♥', '✧'];
-      for (let i = 0; i < count; i++) {
-        const heart = document.createElement('span');
-        heart.className = 'floating-heart';
-        heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-        heart.style.left = (8 + Math.random() * 84) + 'vw';
-        heart.style.top = (48 + Math.random() * 38) + 'vh';
-        heart.style.animationDelay = (Math.random() * .65) + 's';
-        heart.style.fontSize = (12 + Math.random() * 17) + 'px';
+    // Show a different funny message.
+    attempts++;
+
+    hint.textContent =
+        funnyMessages[(attempts - 1) % funnyMessages.length];
+}
+
+
+// On desktop, run away as soon as the mouse approaches.
+noButton.addEventListener("pointerenter", function(event) {
+
+    if (event.pointerType === "mouse") {
+        moveNoButton();
+    }
+
+});
+
+
+// On mobile or desktop, dodge when pressed.
+noButton.addEventListener("pointerdown", function(event) {
+
+    event.preventDefault();
+    moveNoButton();
+
+});
+
+
+// Extra support for touchscreen devices.
+noButton.addEventListener("touchstart", function(event) {
+
+    event.preventDefault();
+    moveNoButton();
+
+}, { passive: false });
+
+
+// Even keyboard activation cannot select NO.
+noButton.addEventListener("click", function(event) {
+
+    event.preventDefault();
+    moveNoButton();
+
+});
+
+
+// If someone navigates to NO using the keyboard,
+// move it away when it receives focus.
+noButton.addEventListener("focus", function() {
+    moveNoButton();
+});
+
+
+// Reposition it if the screen changes size.
+window.addEventListener("resize", function() {
+
+    if (!letter.hidden) {
+        positionNoButton();
+    }
+
+});
+
+
+// =======================================
+// YES BUTTON: HAPPY ENDING
+// =======================================
+
+yesButton.addEventListener("click", function() {
+
+    letter.hidden = true;
+    success.hidden = false;
+
+    createHearts();
+
+});
+
+
+// =======================================
+// FLOATING HEART ANIMATION
+// =======================================
+
+function createHearts() {
+
+    const heartSymbols = [
+        "💗", "💕", "💖", "💓", "💘", "💞", "♡"
+    ];
+
+    for (let i = 0; i < 35; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.textContent =
+            heartSymbols[
+                Math.floor(Math.random() * heartSymbols.length)
+            ];
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.fontSize =
+            (16 + Math.random() * 25) + "px";
+
+        heart.style.animationDuration =
+            (3 + Math.random() * 4) + "s";
+
+        heart.style.animationDelay =
+            (Math.random() * 2) + "s";
+
         document.body.appendChild(heart);
-        heart.addEventListener('animationend', () => heart.remove(), { once: true });
-      }
+
+        setTimeout(() => {
+            heart.remove();
+        }, 8500);
+
     }
-  </script>
+
+}
+
+</script>
+
 </body>
 </html>
